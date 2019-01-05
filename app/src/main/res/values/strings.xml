@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">TwitterClient</string>
+    <string name="textview">TextView</string>
+    <string name="drawer_open">Drawer Open</string>
+    <string name="drawer_close">Drawer Close</string>
+    <string name="email">Email...</string>
+    <string name="password">Password...</string>
+    <string name="forgot_password">Forgot password?</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="CONSUMER_KEY">Lz7CXXuFsnDXqJKmf31C3y0x2 </string>
+    <string name="CONSUMER_SECRET">2kyr7esRJiSdf3F09Tf9gl6CD7geywPe4FLyhBtbuI0xAqLtUG</string>
+    <string name="custom_log_in_with_twitter">Custom Log in with Twitter</string>
+    <string name="get_profile_image">Fetch Profile Image</string>
+
+</resources>

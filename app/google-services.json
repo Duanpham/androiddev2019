@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "404913029062",
+    "firebase_url": "https://twitterclient-999ff.firebaseio.com",
+    "project_id": "twitterclient-999ff",
+    "storage_bucket": "twitterclient-999ff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:404913029062:android:52d89028e084289b",
+        "android_client_info": {
+          "package_name": "usth.edu.vn.twitterclient"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "404913029062-rbtu5re2qghceirbbt2bbfj0iho1fusu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "usth.edu.vn.twitterclient",
+            "certificate_hash": "04b47c3730b895c364c1fc043e968882a80106fc"
+          }
+        },
+        {
+          "client_id": "404913029062-28ug6i8t54qsgdmclfbnll5t4ja5sjqh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsXgof2uaEtxBCFbyzXPK49oP7xkXGlQs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "404913029062-28ug6i8t54qsgdmclfbnll5t4ja5sjqh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
