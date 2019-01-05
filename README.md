@@ -11,7 +11,7 @@ Student Info
 =======================
 * Student Name:
   * Nguyen Xuan Bach - USTHBI7-021
+  * Pham Minh Kien- USTHBI7-087
+  * Tran Duc Manh- USTHBI7-105
   * Pham Van Duan- USTHBI7-034
-  * Pham Minh Kien
-  * Tran Duc Manh
 * Project name: Twitter Client
