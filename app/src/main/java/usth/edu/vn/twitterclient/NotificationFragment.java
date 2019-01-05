@@ -43,12 +43,12 @@ public class NotificationFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =inflater.inflate(R.layout.fragment_notification, container, false);
         fab=(FloatingActionButton) view.findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendUserToTweetActivity();
-            }
-        });
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                sendUserToPostActivity();
+//            }
+//        });
         viewPager = view.findViewById(R.id.viewpager_notification);
         addTabs(viewPager);
 
@@ -56,10 +56,6 @@ public class NotificationFragment extends Fragment {
         tabLayout.setupWithViewPager(viewPager);
 
         return  view;
-    }
-    private void sendUserToTweetActivity() {
-        Intent intent3 =new Intent(getActivity(),TweetActivity.class);
-        startActivity(intent3);
     }
 
 

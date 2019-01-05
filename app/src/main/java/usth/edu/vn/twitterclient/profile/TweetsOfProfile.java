@@ -71,28 +71,31 @@ public class TweetsOfProfile extends Fragment {
         MyPreferenceManager myPreferenceManager = new MyPreferenceManager(context);
         //build UserTimeline
         UserTimeline userTimeline = new UserTimeline.Builder()
-                .userId(myPreferenceManager.getUserId())
-                .screenName(myPreferenceManager.getScreenName())
-                .includeReplies(true)
-                .includeRetweets(true)
-                .maxItemsPerRequest(50)
+                .userId(myPreferenceManager.getUserId())//User ID of the user to show tweets for
+                .screenName(myPreferenceManager.getScreenName())//screen name of the user to show tweets for
+                .includeReplies(true)//Whether to include replies. Defaults to false.
+                .includeRetweets(true)//Whether to include re-tweets. Defaults to true.
+                .maxItemsPerRequest(50)//Max number of items to return per request
                 .build();
 
+        UserTimeline userTimeline2 = new UserTimeline.Builder().screenName("twitterdev").build();
         //now build adapter for recycler view
         adapter = new TweetTimelineRecyclerViewAdapter.Builder(getContext())
-                .setTimeline(userTimeline)
+                .setTimeline(userTimeline)//set the created timeline
+                //action callback to listen when user like/unlike the tweet
                 .setOnActionCallback(new Callback<Tweet>() {
                     @Override
                     public void success(Result<Tweet> result) {
+                        //do something on success response
                     }
 
                     @Override
                     public void failure(TwitterException exception) {
+                        //do something on failure response
                     }
                 })
                 //set tweet view style
                 .setViewStyle(R.style.tw__TweetLightWithActionsStyle)
-//                .setViewStyle(R.style.tw__TweetDarkWithActionsStyle)
                 .build();
 
         //finally set the created adapter to recycler view
@@ -103,6 +106,7 @@ public class TweetsOfProfile extends Fragment {
         //find the id of swipe refresh layout
         swipeRefreshLayout = view.findViewById(R.id.user_swipe_refresh_layout);
 
+        //implement refresh listener
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

@@ -82,8 +82,9 @@ public class ProfileActivity extends AppCompatActivity {
     }
     public void fetchTwitterName(final TwitterSession twitterSession) {
         String username =twitterSession.getUserName();
+//        String fullname =twitterSession.getUserName();
         usernameProfile.setText(username);
-
+//        fullnameProfile.setText(fullname);
     }
     public void fetchTwitterImage() {
         //check if user is already authenticated or not
@@ -92,6 +93,8 @@ public class ProfileActivity extends AppCompatActivity {
             //fetch twitter image with other information if user is already authenticated
             //initialize twitter api client
             TwitterApiClient twitterApiClient = TwitterCore.getInstance().getApiClient();
+
+            //Link for Help : https://developer.twitter.com/en/docs/accounts-and-users/manage-account-settings/api-reference/get-account-verify_credentials
 
             //pass includeEmail : true if you want to fetch Email as well
             Call<User> call = twitterApiClient.getAccountService().verifyCredentials(true, false, true);
@@ -103,6 +106,11 @@ public class ProfileActivity extends AppCompatActivity {
                     String name= user.name;
                     fullnameProfile.setText(name);
                     imageProfileUrl = imageProfileUrl.replace("_normal", "");
+                    ///load image using Picasso
+//                    Picasso.get()
+//                            .load(imageProfileUrl)
+//                            .placeholder(R.mipmap.ic_launcher_round)
+//                            .into(userProfileImage);
                     Glide.with(ProfileActivity.this).load(imageProfileUrl).into(userProfileImage);
                 }
                 @Override

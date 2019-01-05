@@ -8,8 +8,6 @@ import android.content.SharedPreferences;
 public class MyPreferenceManager {
 
 
-     //preference constant keys
-
     private static final String PREF_KEY = "login_prefs";
     private static final String USER_ID = "user_id";
     private static final String SCREEN_NAME = "screen_name";
@@ -41,7 +39,7 @@ public class MyPreferenceManager {
         editor.apply();
     }
 
-     //saved user screen name
+
     public String getScreenName() {
         return sharedPreferences.getString(SCREEN_NAME, "");
     }

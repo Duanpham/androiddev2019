@@ -96,14 +96,22 @@ public class SearchFragment extends Fragment {
         setUpSearchQuery(view);
     }
 
-
+    /**
+     * set up recycler view
+     *
+     * @param view of the fragment
+     */
     private void setUpRecyclerView(View view) {
         searchTimelineRecyclerView = view.findViewById(R.id.search_timeline_recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         searchTimelineRecyclerView.setLayoutManager(linearLayoutManager);
     }
 
-
+    /**
+     * set up search query
+     *
+     * @param view
+     */
     private void setUpSearchQuery(View view) {
         searchQuery = view.findViewById(R.id.enter_search_query);
 
@@ -117,12 +125,18 @@ public class SearchFragment extends Fragment {
 
                     //get the text from edit text
                     String searchQuery = textView.getText().toString().trim();
+
                     //check if query should not empty
                     if (!TextUtils.isEmpty(searchQuery)) {
+
+                        //hide keyboard
                         hideKeyboard(textView);
+
+                        //search entered query
                         doTwitterSearch(searchQuery);
 
                     } else {
+                        //if query is empty show toast
                         Toast.makeText(context, "Please enter something to search.", Toast.LENGTH_SHORT).show();
                     }
 
@@ -133,38 +147,54 @@ public class SearchFragment extends Fragment {
         });
     }
 
-
+    /**
+     * method to trigger Tweet search on query base
+     *
+     * @param query
+     */
     private void doTwitterSearch(String query) {
+        //build the Search TimeLine
         SearchTimeline searchTimeline = new SearchTimeline.Builder()
-                .query(query)
-                .languageCode(Locale.ENGLISH.getLanguage())
-                .maxItemsPerRequest(50)
+                .query(query)//the search query for Tweets
+                .languageCode(Locale.ENGLISH.getLanguage())//set the language code
+                .maxItemsPerRequest(50)//Max number of items to return per request
                 .build();
 
         //create adapter for RecyclerView
         adapter = new TweetTimelineRecyclerViewAdapter.Builder(context)
-                .setTimeline(searchTimeline)
+                .setTimeline(searchTimeline)//set created timeline
+                //.setTimelineFilter(timelineFilter) //set timeline filter if any required
                 //action callback to listen when user like/unlike the tweet
                 .setOnActionCallback(new Callback<Tweet>() {
                     @Override
                     public void success(Result<Tweet> result) {
+                        //do something on success response
                     }
 
                     @Override
                     public void failure(TwitterException exception) {
+                        //do something on failure response
                     }
                 })
+                //set tweet view style
                 .setViewStyle(R.style.tw__TweetLightWithActionsStyle)
                 .build();
 
+        //finally set created adapter to recycler view
         searchTimelineRecyclerView.setAdapter(adapter);
     }
 
-
+    /**
+     * set up swipe refresh layout
+     *
+     * @param view of the fragment
+     */
     private void setUpSwipeRefreshLayout(View view) {
 
+        //find the id of swipe refresh layout
         swipeRefreshLayout = view.findViewById(R.id.search_swipe_refresh_layout);
 
+        //implement refresh listener
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -173,6 +203,7 @@ public class SearchFragment extends Fragment {
                 if (adapter == null)
                     return;
 
+                //make set refreshing true
                 swipeRefreshLayout.setRefreshing(true);
                 adapter.refresh(new Callback<TimelineResult<Tweet>>() {
                     @Override
@@ -184,6 +215,7 @@ public class SearchFragment extends Fragment {
 
                     @Override
                     public void failure(TwitterException exception) {
+                        // Toast or some other action
                         Toast.makeText(context, "Failed to refresh tweets.", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -191,7 +223,11 @@ public class SearchFragment extends Fragment {
         });
     }
 
-
+    /**
+     * method to hide keyboard manually
+     *
+     * @param view of the current context
+     */
     private void hideKeyboard(View view) {
         InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         if (inputMethodManager != null) {

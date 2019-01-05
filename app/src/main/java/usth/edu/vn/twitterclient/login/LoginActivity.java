@@ -29,8 +29,6 @@ import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 import usth.edu.vn.twitterclient.MainActivity;
 import usth.edu.vn.twitterclient.R;
 
-import static usth.edu.vn.twitterclient.MainActivity.k;
-
 public class LoginActivity extends AppCompatActivity {
 
     private TwitterLoginButton twitterLoginButton;
@@ -48,16 +46,16 @@ public class LoginActivity extends AppCompatActivity {
 
         //check if user is already login or not
         if (myPreferenceManager.getUserId() != 0) {
+            //if already login then start main activity
             sendUserToMainActivity();
             return;
-        }
-        if(k==2) {
-
         }
         //initialize twitter auth client
 //        client = new TwitterAuthClient();
 
+        //find the id of views
         twitterLoginButton = findViewById(R.id.default_twitter_login_button);
+        //NOTE : calling default twitter login in OnCreate/OnResume to initialize twitter callback
 //        defaultLoginTwitter();
         twitterLoginButton.setCallback(new Callback<TwitterSession>() {
             @Override
@@ -71,17 +69,21 @@ public class LoginActivity extends AppCompatActivity {
                     myPreferenceManager.saveUserId(twitterSession.getUserId());//save user id
                     myPreferenceManager.saveScreenName(twitterSession.getUserName());//save user screen name
 
-
+                    //after saving start main activity
                     sendUserToMainActivity();
+
+                    //show toast
                     Toast.makeText(LoginActivity.this, "Login Successful.", Toast.LENGTH_SHORT).show();
                 } else {
 
+                    //if twitter session is null due to some reason then show error toast
                     Toast.makeText(LoginActivity.this, "Failed to do Login. Please try again.", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void failure(TwitterException exception) {
+                // Do something on failure
                 Toast.makeText(LoginActivity.this, "Failed to do Login. Please try again.", Toast.LENGTH_SHORT).show();
             }
         });

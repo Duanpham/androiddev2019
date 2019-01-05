@@ -24,6 +24,7 @@ public class MessageFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -32,12 +33,12 @@ public class MessageFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_message, container, false);
         findFriend= view.findViewById(R.id.button_find_friend);
-        findFriend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendUserToSendMessageActivity();
-            }
-        });
+//        findFriend.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                sendUserToFindFriendsActivity();
+//            }
+//        });
         fab=(FloatingActionButton) view.findViewById(R.id.fab2);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,11 +47,6 @@ public class MessageFragment extends Fragment {
             }
         });
         return view;
-    }
-
-    private void sendUserToSendMessageActivity() {
-        Intent intent =new Intent(getActivity(),SendMessageAcitivity.class);
-        startActivity(intent);
     }
 
     private void sendUserToChatActivity() {

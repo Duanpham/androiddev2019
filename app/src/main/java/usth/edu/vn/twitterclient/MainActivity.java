@@ -26,12 +26,8 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 import com.twitter.sdk.android.core.Callback;
-import com.twitter.sdk.android.core.DefaultLogger;
 import com.twitter.sdk.android.core.Result;
-import com.twitter.sdk.android.core.Twitter;
 import com.twitter.sdk.android.core.TwitterApiClient;
-import com.twitter.sdk.android.core.TwitterAuthConfig;
-import com.twitter.sdk.android.core.TwitterConfig;
 import com.twitter.sdk.android.core.TwitterCore;
 import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.TwitterSession;
@@ -66,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton fab;
     private RecyclerView postList;
 
-    public static  int k;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
             //initialize twitter api client
             TwitterApiClient twitterApiClient = TwitterCore.getInstance().getApiClient();
 
+            //Link for Help : https://developer.twitter.com/en/docs/accounts-and-users/manage-account-settings/api-reference/get-account-verify_credentials
 
             //pass includeEmail : true if you want to fetch Email as well
             Call<User> call = twitterApiClient.getAccountService().verifyCredentials(true, false, true);
@@ -212,8 +209,6 @@ public class MainActivity extends AppCompatActivity {
         Intent loginIntent =new Intent(MainActivity.this,LoginActivity.class);
         loginIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(loginIntent);
-            k=2;
-//        initTwitter();
         finish();
     }
 
@@ -261,17 +256,5 @@ public class MainActivity extends AppCompatActivity {
         profileIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(profileIntent);
         finish();
-    }
-    TwitterAuthClient twitterAuthClient;
-    public void initTwitter(){
-
-        TwitterConfig config = new TwitterConfig.Builder(this)
-                .logger(new DefaultLogger(Log.DEBUG))
-                .twitterAuthConfig(new TwitterAuthConfig(getString(R.string.CONSUMER_KEY),getString(R.string.CONSUMER_SECRET)))
-                .debug(true)
-                .build();
-        Twitter.initialize(config);
-
-        twitterAuthClient = new TwitterAuthClient();
     }
 }
